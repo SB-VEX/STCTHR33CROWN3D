@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>STC_THR33CROWN3D · 9863S — VEX IQ Robotics</title>
+<meta name="description" content="STC_THR33CROWN3D · Team 9863S — a VEX IQ robotics team competing in the 2025–2026 Mix & Match season." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&family=Orbitron:wght@500;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --space:       #04050f;
+    --void:        #080c1f;
+    --deep:        #0c1535;
+    --navy:        #142a5e;
+    --cyan:        #4de5ff;
+    --cyan-hi:     #8ef2ff;
+    --cyan-dim:    #1a8aa3;
+    --blue:        #2b7fff;
+    --mint:        #5dffaa;
+    --violet:      #8b5cf6;
+    --violet-soft: #b794f6;
+    --ice:         #e8f4ff;
+    --ice-dim:     #7b8bae;
+    --border:      rgba(77, 229, 255, 0.18);
+    --border-hi:   rgba(77, 229, 255, 0.5);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--space);
+    color: var(--ice);
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse at 20% 10%, rgba(43,127,255,0.18) 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 85%, rgba(139,92,246,0.14) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(77,229,255,0.04) 0%, transparent 70%),
+      linear-gradient(180deg, #04050f 0%, #070a1f 50%, #04050f 100%);
+    background-attachment: fixed;
+  }
+
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(1px 1px at 23px 47px, #ffffff, transparent),
+      radial-gradient(1px 1px at 83px 128px, rgba(255,255,255,0.7), transparent),
+      radial-gradient(1px 1px at 195px 62px, #ffffff, transparent),
+      radial-gradient(1px 1px at 47px 201px, rgba(143,220,255,0.8), transparent),
+      radial-gradient(1.5px 1.5px at 310px 153px, #ffffff, transparent),
+      radial-gradient(1px 1px at 158px 257px, rgba(255,255,255,0.6), transparent),
+      radial-gradient(1px 1px at 263px 18px, rgba(180,230,255,0.7), transparent),
+      radial-gradient(1px 1px at 390px 310px, #ffffff, transparent),
+      radial-gradient(1.5px 1.5px at 113px 334px, rgba(255,255,255,0.8), transparent),
+      radial-gradient(1px 1px at 350px 90px, rgba(200,240,255,0.6), transparent);
+    background-size: 420px 380px;
+    z-index: 1;
+    opacity: 0.7;
+    animation: twinkle 8s ease-in-out infinite alternate;
+  }
+  @keyframes twinkle { from { opacity: 0.4; } to { opacity: 0.8; } }
+
+  body::after {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(77,229,255,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(77,229,255,0.05) 1px, transparent 1px);
+    background-size: 100px 100px;
+    z-index: 1;
+    mask-image: radial-gradient(ellipse at center, black 20%, transparent 85%);
+  }
+
+  main, header, section, footer, nav { position: relative; z-index: 2; }
+
+  ::selection { background: var(--cyan); color: var(--space); }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 50;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 3rem;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    background: rgba(4,5,15,0.75);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .mark {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    color: var(--cyan);
+    display: flex; align-items: center; gap: 0.8rem;
+    text-shadow: 0 0 20px rgba(77,229,255,0.4);
+  }
+  nav .mark svg { width: 28px; height: 28px; filter: drop-shadow(0 0 6px rgba(77,229,255,0.6)); }
+  nav .mark .num { color: var(--mint); font-size: 0.75rem; letter-spacing: 0.2em; }
+
+  nav ul { display: flex; gap: 2rem; list-style: none; align-items: center; }
+  nav a {
+    color: var(--ice-dim);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: color 0.25s ease, text-shadow 0.25s ease;
+    position: relative;
+  }
+  nav a::after{
+    content:""; position:absolute; left:0; bottom:-6px;
+    width:0; height:1px; background: var(--cyan); box-shadow: 0 0 6px var(--cyan);
+    transition: width 0.3s ease;
+  }
+  nav a:hover { color: var(--cyan); text-shadow: 0 0 12px rgba(77,229,255,0.6); }
+  nav a:hover::after { width: 100%; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 8rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .hero .callsign {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.4em;
+    color: var(--mint);
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+    text-transform: uppercase;
+  }
+  .hero .callsign::before { content: "◈ "; }
+  .hero .callsign::after  { content: " ◈"; }
+
+  .hero-badge {
+    width: clamp(200px, 28vw, 290px);
+    height: clamp(200px, 28vw, 290px);
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.4s forwards, pulseGlow 4s ease-in-out infinite 1.5s;
+    filter: drop-shadow(0 0 40px rgba(77,229,255,0.4));
+  }
+  @keyframes pulseGlow {
+    0%, 100% { filter: drop-shadow(0 0 40px rgba(77,229,255,0.35)); }
+    50%      { filter: drop-shadow(0 0 60px rgba(77,229,255,0.6)); }
+  }
+
+  .hero h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.8rem, 5.5vw, 4.2rem);
+    letter-spacing: 0.08em;
+    line-height: 1;
+    color: var(--ice);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.6s forwards;
+    text-shadow:
+      0 0 30px rgba(77,229,255,0.35),
+      0 0 60px rgba(43,127,255,0.2);
+  }
+  .hero h1 .underscore { color: var(--cyan); }
+  .hero h1 .digit     { color: var(--cyan); }
+
+  .hero .team-number {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    letter-spacing: 0.12em;
+    line-height: 1;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.85s forwards;
+    background: linear-gradient(180deg, var(--cyan-hi) 0%, var(--cyan) 45%, var(--blue) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 25px rgba(77,229,255,0.5));
+    position: relative;
+  }
+
+  .hero .motto {
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 400;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    color: var(--ice-dim);
+    max-width: 620px;
+    margin-top: 0.5rem;
+    letter-spacing: 0.04em;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.1s forwards;
+  }
+
+  .hero .stats-strip {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    padding: 1.5rem 2.5rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: rgba(12,21,53,0.3);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    animation: fadeUp 1s ease 1.3s forwards;
+  }
+  .hero .stats-strip .stat {
+    display: flex; flex-direction: column; gap: 0.3rem;
+    min-width: 80px;
+  }
+  .hero .stats-strip .stat b {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    color: var(--cyan);
+    font-weight: 700;
+  }
+  .hero .stats-strip .stat span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    color: var(--ice-dim);
+    text-transform: uppercase;
+  }
+  .hero .stats-strip .divider { width: 1px; background: var(--border); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .scroll-cue {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.3em; color: var(--ice-dim);
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.6s forwards, bob 2.2s ease-in-out infinite 2s;
+  }
+  @keyframes bob { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+
+  /* SECTIONS */
+  section.block {
+    padding: 7rem 3rem;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    display: inline-flex; align-items: center; gap: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.35em;
+    color: var(--mint);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .section-label::before {
+    content: ""; width: 32px; height: 1px; background: var(--mint);
+    box-shadow: 0 0 6px var(--mint);
+  }
+
+  .section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--ice);
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    letter-spacing: 0.03em;
+  }
+  .section-title em {
+    color: var(--cyan);
+    font-style: normal;
+    text-shadow: 0 0 20px rgba(77,229,255,0.4);
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-grid p {
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 400;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--ice);
+    margin-bottom: 1.2rem;
+  }
+  .about-grid p:first-of-type::first-letter {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4rem;
+    float: left;
+    line-height: 0.9;
+    padding: 0.3rem 0.7rem 0 0;
+    color: var(--cyan);
+    font-weight: 800;
+    text-shadow: 0 0 20px rgba(77,229,255,0.5);
+  }
+  .about-grid strong { color: var(--cyan); font-weight: 600; }
+
+  .sigil-card {
+    border: 1px solid var(--border);
+    padding: 2.5rem 2rem;
+    background: linear-gradient(180deg, rgba(43,127,255,0.08), rgba(12,21,53,0.4));
+    backdrop-filter: blur(8px);
+    position: relative;
+  }
+  .sigil-card::before{
+    content:""; position:absolute; top:-1px; left:-1px; width:22px; height:22px;
+    border-top: 2px solid var(--cyan); border-left: 2px solid var(--cyan);
+    box-shadow: -2px -2px 10px rgba(77,229,255,0.3);
+  }
+  .sigil-card::after{
+    content:""; position:absolute; bottom:-1px; right:-1px; width:22px; height:22px;
+    border-bottom: 2px solid var(--cyan); border-right: 2px solid var(--cyan);
+    box-shadow: 2px 2px 10px rgba(77,229,255,0.3);
+  }
+  .sigil-card h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--cyan);
+    font-size: 0.85rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+    font-weight: 700;
+  }
+  .sigil-card dl {
+    display: grid; grid-template-columns: auto 1fr; gap: 1rem 1.5rem;
+  }
+  .sigil-card dt {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ice-dim);
+  }
+  .sigil-card dd { font-size: 0.9rem; color: var(--ice); }
+  .sigil-card dd .accent { color: var(--mint); }
+  .sigil-card dd .num { font-family: 'Orbitron', sans-serif; color: var(--cyan); font-weight: 700; letter-spacing: 0.08em; }
+
+  /* SEASON */
+  .season {
+    background:
+      linear-gradient(180deg, transparent 0%, rgba(20,42,94,0.35) 20%, rgba(20,42,94,0.35) 80%, transparent 100%);
+    padding: 5rem 0;
+    margin-top: 2rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .season-inner {
+    max-width: 1280px; margin: 0 auto;
+    padding: 3rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .season-head .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--mint);
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--mint);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px rgba(93,255,170,0.15);
+  }
+  .season-head h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.02em;
+  }
+  .season-head h2 span {
+    color: var(--cyan);
+    text-shadow: 0 0 25px rgba(77,229,255,0.5);
+  }
+  .season-head p {
+    font-family: 'Chakra Petch', sans-serif;
+    color: var(--ice);
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  .scoring {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+  .score-tile {
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    background: rgba(8,12,31,0.6);
+    backdrop-filter: blur(6px);
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  .score-tile:hover {
+    border-color: var(--cyan);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 40px -10px rgba(77,229,255,0.4);
+  }
+  .score-tile .icon {
+    width: 38px; height: 38px; margin-bottom: 1rem;
+    filter: drop-shadow(0 0 8px rgba(77,229,255,0.4));
+  }
+  .score-tile h4 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    color: var(--ice);
+    margin-bottom: 0.3rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+  .score-tile .points {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--mint);
+    font-size: 0.7rem; letter-spacing: 0.15em;
+    margin-bottom: 0.7rem;
+    text-transform: uppercase;
+  }
+  .score-tile p {
+    font-size: 0.85rem;
+    color: var(--ice-dim);
+    line-height: 1.55;
+  }
+
+  /* BOT */
+  .bot {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  /* Video wrapper — matches the cyberpunk HUD look */
+  .bot-video {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    aspect-ratio: 1258 / 556;
+    border: 1px solid var(--border);
+    background: var(--void);
+    overflow: hidden;
+    box-shadow: 0 20px 60px -20px rgba(77,229,255,0.15);
+  }
+  .bot-video::before,
+  .bot-video::after {
+    content: ""; position: absolute; width: 26px; height: 26px;
+    pointer-events: none; z-index: 3;
+  }
+  .bot-video::before {
+    top: -1px; left: -1px;
+    border-top: 2px solid var(--cyan);
+    border-left: 2px solid var(--cyan);
+    box-shadow: -3px -3px 12px rgba(77,229,255,0.35);
+  }
+  .bot-video::after {
+    bottom: -1px; right: -1px;
+    border-bottom: 2px solid var(--cyan);
+    border-right: 2px solid var(--cyan);
+    box-shadow: 3px 3px 12px rgba(77,229,255,0.35);
+  }
+  .bot-video video {
+    width: 100%; height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+  .bot-video .hud {
+    position: absolute;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    pointer-events: none;
+    z-index: 2;
+    padding: 0.25rem 0.55rem;
+    background: rgba(4,5,15,0.72);
+    backdrop-filter: blur(6px);
+    border: 1px solid var(--border);
+  }
+  .bot-video .hud.tl { top: 12px; left: 12px; color: var(--ice); }
+  .bot-video .hud.tr { top: 12px; right: 12px; color: var(--mint); }
+  .bot-video .hud.bl { bottom: 12px; left: 12px; color: var(--cyan); }
+  .bot-video .hud.br { bottom: 12px; right: 12px; color: var(--ice-dim); }
+  .bot-video .live-dot {
+    display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--mint); vertical-align: 1px; margin-right: 0.4rem;
+    box-shadow: 0 0 8px var(--mint);
+    animation: liveBlink 1.6s ease-in-out infinite;
+  }
+  @keyframes liveBlink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.35; }
+  }
+
+  /* Specs now sit below the video, two-column on wider screens */
+  .bot-specs {
+    list-style: none;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3rem;
+  }
+  .bot-specs li {
+    display: grid; grid-template-columns: 140px 1fr;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+  }
+  .bot-specs li:first-child,
+  .bot-specs li:nth-child(2) { border-top: 1px solid var(--border); }
+  .bot-specs .spec-label {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--cyan);
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding-top: 3px;
+  }
+  .bot-specs .spec-value {
+    color: var(--ice);
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .bot-specs .spec-value em {
+    color: var(--mint); font-style: normal;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+  }
+
+  /* Aliases chip row */
+  .aliases {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;
+  }
+  .alias-chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--violet-soft);
+    padding: 0.35rem 0.8rem;
+    border: 1px solid rgba(139,92,246,0.4);
+    background: rgba(139,92,246,0.08);
+  }
+  .alias-chip.primary {
+    color: var(--cyan);
+    border-color: var(--cyan-dim);
+    background: rgba(77,229,255,0.08);
+  }
+
+  /* How-it-works numbered beats */
+  .how-works {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1rem; margin-top: 3rem;
+  }
+  .beat {
+    border: 1px solid var(--border);
+    padding: 1.6rem 1.3rem;
+    background: rgba(8,12,31,0.5);
+    backdrop-filter: blur(6px);
+    position: relative;
+    transition: border-color 0.3s;
+  }
+  .beat:hover { border-color: var(--cyan); }
+  .beat .num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem; letter-spacing: 0.25em;
+    color: var(--mint); font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+  .beat h5 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--ice);
+    font-size: 0.95rem;
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .beat p {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 0.85rem;
+    color: var(--ice-dim);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 960px) {
+    .how-works { grid-template-columns: 1fr; }
+  }
+
+  /* ROSTER */
+  .roster {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+
+  /* Role chips inside member cards */
+  .member .roles {
+    display: flex; flex-wrap: wrap; gap: 0.35rem;
+    margin-bottom: 1rem;
+  }
+  .member .role-chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mint);
+    padding: 0.3rem 0.55rem;
+    border: 1px solid rgba(93,255,170,0.35);
+    background: rgba(93,255,170,0.05);
+    white-space: nowrap;
+  }
+  .member .role-chip.cyan {
+    color: var(--cyan);
+    border-color: var(--cyan-dim);
+    background: rgba(77,229,255,0.06);
+  }
+  .member .role-chip.violet {
+    color: var(--violet-soft);
+    border-color: rgba(139,92,246,0.4);
+    background: rgba(139,92,246,0.08);
+  }
+  .member {
+    border: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    background: linear-gradient(180deg, rgba(20,42,94,0.3), rgba(8,12,31,0.5));
+    backdrop-filter: blur(6px);
+    position: relative;
+    transition: all 0.35s ease;
+    overflow: hidden;
+  }
+  .member::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyan), var(--mint), var(--cyan), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+    box-shadow: 0 0 8px var(--cyan);
+  }
+  .member:hover { transform: translateY(-6px); border-color: var(--cyan); box-shadow: 0 15px 40px -15px rgba(77,229,255,0.4); }
+  .member:hover::before { transform: translateX(100%); }
+
+  .member .avatar {
+    width: 70px; height: 70px;
+    border: 1px solid var(--cyan);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.2rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    color: var(--cyan);
+    font-weight: 800;
+    position: relative;
+    background: rgba(77,229,255,0.05);
+    box-shadow: 0 0 20px rgba(77,229,255,0.2), inset 0 0 15px rgba(77,229,255,0.1);
+  }
+  .member .avatar::before {
+    content: ""; position: absolute; inset: -5px;
+    border: 1px solid var(--border);
+  }
+  .member .role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.3em;
+    color: var(--mint);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .member h4 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--ice);
+    font-size: 1.15rem;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .member p {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 0.9rem;
+    color: var(--ice-dim);
+    line-height: 1.65;
+  }
+
+  /* HONOURS */
+  .honours-list {
+    border-left: 1px solid var(--border);
+    padding-left: 2rem;
+    margin-top: 2rem;
+  }
+  .honour {
+    display: grid; grid-template-columns: 120px 1fr auto;
+    gap: 2rem;
+    padding: 1.8rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+    position: relative;
+  }
+  .honour::before {
+    content: ""; position: absolute; left: -2.4rem; top: 50%;
+    width: 0.8rem; height: 1px; background: var(--cyan);
+    box-shadow: 0 0 6px var(--cyan);
+  }
+  .honour::after {
+    content: ""; position: absolute; left: -2.7rem; top: 50%; transform: translateY(-50%);
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 10px var(--cyan);
+  }
+  .honour .when {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--mint);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+  }
+  .honour h4 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--ice);
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+    font-weight: 700;
+  }
+  .honour .where {
+    font-family: 'Chakra Petch', sans-serif;
+    font-style: italic;
+    color: var(--ice-dim);
+    font-size: 0.9rem;
+  }
+  .honour .medal {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: var(--cyan);
+    text-transform: uppercase;
+    border: 1px solid var(--cyan-dim);
+    padding: 0.4rem 0.9rem;
+    background: rgba(77,229,255,0.05);
+  }
+
+  /* CTA */
+  .cta {
+    text-align: center;
+    padding: 7rem 3rem;
+    margin: 4rem auto 0;
+    max-width: 900px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    background: radial-gradient(ellipse at center, rgba(43,127,255,0.08), transparent 70%);
+  }
+  .cta .crown-seal {
+    width: 80px; height: 80px;
+    margin: 0 auto 2rem;
+    filter: drop-shadow(0 0 30px rgba(77,229,255,0.5));
+  }
+  .cta h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+    margin-bottom: 1.5rem;
+    color: var(--ice);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .cta h2 em {
+    font-style: normal;
+    color: var(--cyan);
+    text-shadow: 0 0 20px rgba(77,229,255,0.5);
+  }
+  .cta p {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.05rem;
+    color: var(--ice-dim);
+    margin-bottom: 2.5rem;
+  }
+  .cta-buttons {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  }
+  .btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 1.1rem 2rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex; align-items: center; gap: 0.8rem;
+    font-weight: 500;
+  }
+  .btn-primary {
+    background: var(--cyan);
+    color: var(--space);
+    border: 1px solid var(--cyan);
+    box-shadow: 0 0 25px rgba(77,229,255,0.4);
+  }
+  .btn-primary:hover {
+    background: var(--cyan-hi);
+    border-color: var(--cyan-hi);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 40px -5px rgba(77,229,255,0.7);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ice);
+    border: 1px solid var(--border-hi);
+  }
+  .btn-ghost:hover {
+    border-color: var(--mint);
+    color: var(--mint);
+    box-shadow: 0 0 20px rgba(93,255,170,0.2);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 3rem;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--ice-dim);
+    text-transform: uppercase;
+  }
+  footer .crown-inline { display: inline-block; vertical-align: middle; width: 16px; height: 16px; margin: 0 0.5rem; }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    nav { padding: 0.9rem 1.2rem; }
+    nav ul { display: none; }
+    nav .mark { font-size: 0.7rem; }
+    section.block { padding: 5rem 1.5rem; }
+    .hero { padding: 6rem 1.5rem 3rem; }
+    .about-grid, .season-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .season-inner { padding: 2rem 1.5rem; }
+    .roster { grid-template-columns: 1fr; }
+    .scoring { grid-template-columns: 1fr; }
+    .honour { grid-template-columns: 1fr; gap: 0.4rem; }
+    .honour .medal { justify-self: start; margin-top: 0.5rem; }
+    .hero .stats-strip { flex-wrap: wrap; gap: 1.5rem; padding: 1.2rem; justify-content: center; }
+    .hero .stats-strip .divider { display: none; }
+    .bot-specs { grid-template-columns: 1fr; column-gap: 0; }
+    .bot-specs li:nth-child(2) { border-top: none; }
+    .bot-video .hud { font-size: 0.55rem; padding: 0.2rem 0.4rem; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- SVG DEFS -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="crownGradDark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"  stop-color="#2b7fff"/>
+      <stop offset="100%" stop-color="#142a5e"/>
+    </linearGradient>
+    <radialGradient id="badgeBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"  stop-color="#0c1535"/>
+      <stop offset="100%" stop-color="#04050f"/>
+    </radialGradient>
+
+    <!-- Faceted crystalline crown -->
+    <symbol id="crown" viewBox="0 0 120 90">
+      <polygon points="15,78 105,78 108,64 12,64" fill="url(#crownGradDark)" stroke="#4de5ff" stroke-width="1.2"/>
+      <polygon points="12,64 26,20 44,60" fill="#1e4ea8" stroke="#4de5ff" stroke-width="1"/>
+      <polygon points="26,20 35,38 44,60" fill="#4de5ff" stroke="#8ef2ff" stroke-width="0.8"/>
+      <polygon points="44,60 60,6 76,60" fill="#2b7fff" stroke="#4de5ff" stroke-width="1"/>
+      <polygon points="60,6 70,32 76,60" fill="#8ef2ff" stroke="#e8f4ff" stroke-width="0.8"/>
+      <polygon points="76,60 94,20 108,64" fill="#1e4ea8" stroke="#4de5ff" stroke-width="1"/>
+      <polygon points="94,20 85,38 76,60" fill="#4de5ff" stroke="#8ef2ff" stroke-width="0.8"/>
+      <circle cx="35" cy="71" r="2" fill="#e8f4ff"/>
+      <circle cx="60" cy="71" r="2.5" fill="#8ef2ff"/>
+      <circle cx="85" cy="71" r="2" fill="#e8f4ff"/>
+    </symbol>
+
+    <!-- Full badge -->
+    <symbol id="logo-badge" viewBox="0 0 240 240">
+      <circle cx="120" cy="120" r="110" fill="url(#badgeBg)" stroke="#4de5ff" stroke-width="2"/>
+      <circle cx="120" cy="120" r="103" fill="none" stroke="#5dffaa" stroke-width="1.2" stroke-dasharray="5 3 12 3" opacity="0.85"/>
+      <circle cx="120" cy="120" r="94" fill="none" stroke="#2b7fff" stroke-width="0.8" stroke-dasharray="2 4" opacity="0.6"/>
+      <rect x="117" y="6" width="6" height="10" fill="#4de5ff"/>
+      <rect x="117" y="224" width="6" height="10" fill="#4de5ff"/>
+      <rect x="6" y="117" width="10" height="6" fill="#4de5ff"/>
+      <rect x="224" y="117" width="10" height="6" fill="#4de5ff"/>
+      <circle cx="70" cy="60" r="1" fill="#ffffff" opacity="0.9"/>
+      <circle cx="180" cy="75" r="1.2" fill="#ffffff"/>
+      <circle cx="60" cy="170" r="1" fill="#8ef2ff" opacity="0.8"/>
+      <circle cx="190" cy="175" r="1" fill="#ffffff" opacity="0.7"/>
+      <circle cx="90" cy="200" r="0.8" fill="#ffffff"/>
+      <circle cx="155" cy="50" r="0.8" fill="#b794f6" opacity="0.8"/>
+      <circle cx="45" cy="110" r="0.8" fill="#ffffff" opacity="0.7"/>
+      <circle cx="200" cy="130" r="1" fill="#8ef2ff"/>
+      <g transform="translate(60, 75)">
+        <use href="#crown" width="120" height="90"/>
+      </g>
+      <rect x="42" y="172" width="156" height="26" fill="#04050f" stroke="#4de5ff" stroke-width="1.2" rx="2"/>
+      <text x="120" y="189" text-anchor="middle"
+            font-family="Orbitron, sans-serif" font-size="12" font-weight="700"
+            fill="#8ef2ff" letter-spacing="1.5">STC_THR33CROWN3D</text>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- NAV -->
+<nav>
+  <div class="mark">
+    <svg><use href="#crown"/></svg>
+    STC_THR33CROWN3D <span class="num">· 9863S</span>
+  </div>
+  <ul>
+    <li><a href="#about">Team</a></li>
+    <li><a href="#season">Season</a></li>
+    <li><a href="#bot">Robot</a></li>
+    <li><a href="#roster">Roster</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="callsign">VEX IQ · EST. 2025 · TEAM 9863S</div>
+
+  <svg class="hero-badge"><use href="#logo-badge"/></svg>
+
+  <h1>
+    STC<span class="underscore">_</span>THR<span class="digit">33</span>CROWN<span class="digit">3</span>D
+  </h1>
+
+  <div class="team-number">9863S</div>
+
+  <p class="motto">Three crowns. One alliance. Every circuit a promise. <br/>Engineered to build, to code, to conquer.</p>
+
+  <div class="stats-strip">
+    <div class="stat"><b>9863S</b><span>Team ID</span></div>
+    <div class="divider"></div>
+    <div class="stat"><b>02</b><span>Trophies</span></div>
+    <div class="divider"></div>
+    <div class="stat"><b>60s</b><span>Per Match</span></div>
+    <div class="divider"></div>
+    <div class="stat"><b>∞</b><span>Iterations</span></div>
+  </div>
+
+  <div class="scroll-cue">Scroll — Enter the Signal</div>
+</header>
+
+<!-- ABOUT -->
+<section class="block" id="about">
+  <div class="section-label">Section 01</div>
+  <h2 class="section-title">A crew of <em>builders,</em> <br/>coders, and closers.</h2>
+
+  <div class="about-grid">
+    <div>
+      <p>STC_THR33CROWN3D — team <strong>9863S</strong> — is a VEX IQ robotics team forged around three principles: <strong>Design</strong>, <strong>Code</strong>, and <strong>Drive</strong>. The three crowns on our sigil are earned, not given. Every member wears all three before the season is out.</p>
+      <p>We compete, we engineer, we document, we iterate. When a match ends in sixty seconds, the work that got us there took months. We're proud of both.</p>
+      <p>This season, we're chasing one thing: a robot so reliable that the last ten seconds of every match still belong to us.</p>
+    </div>
+
+    <aside class="sigil-card">
+      <h3>Team Dossier</h3>
+      <dl>
+        <dt>Team ID</dt>     <dd><span class="num">9863S</span></dd>
+        <dt>Callsign</dt>    <dd>STC_THR33CROWN3D</dd>
+        <dt>Program</dt>     <dd>VEX IQ <span class="accent">· Competition</span></dd>
+        <dt>Founded</dt>     <dd><span class="num">2025</span></dd>
+        <dt>Season</dt>      <dd>2025 / 2026 — Mix &amp; Match</dd>
+        <dt>Palette</dt>     <dd>Obsidian · Cyan · Mint</dd>
+        <dt>Motto</dt>       <dd>Build. Code. Crown.</dd>
+        <dt>Status</dt>      <dd><span class="accent">●</span> Competition-ready</dd>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<!-- SEASON -->
+<section class="season" id="season">
+  <div class="season-inner">
+    <div class="season-head">
+      <span class="tag">Current Campaign · 2025–2026</span>
+      <h2>Mix &amp; <span>Match</span></h2>
+      <p>Played on a 6′ × 8′ field in sixty-second teamwork matches, this year's game is all about stacking Pins and Beams into Goals — color-matching for bonus, mixing colors for bigger bonus. It rewards clean builds, tight autonomous routines, and drivers who can think one stack ahead.</p>
+      <p style="margin-top:1rem; font-size:0.82rem; color: var(--mint); font-family:'JetBrains Mono', monospace;">// 9863S play: reliable intake, fast stacking, autonomous that actually scores.</p>
+    </div>
+
+    <div class="scoring">
+      <div class="score-tile">
+        <svg class="icon" viewBox="0 0 40 40" fill="none" stroke="#4de5ff" stroke-width="2">
+          <rect x="14" y="4"  width="12" height="8"/>
+          <rect x="14" y="16" width="12" height="8"/>
+          <rect x="14" y="28" width="12" height="8"/>
+        </svg>
+        <h4>Stacks</h4>
+        <div class="points">+1 per Pin · +10 per Beam</div>
+        <p>Build connected towers of Pins and Beams. The taller and more varied, the better the reward.</p>
+      </div>
+
+      <div class="score-tile">
+        <svg class="icon" viewBox="0 0 40 40" fill="none" stroke="#5dffaa" stroke-width="2">
+          <circle cx="20" cy="20" r="14"/>
+          <circle cx="20" cy="20" r="7"/>
+          <circle cx="20" cy="20" r="1.5" fill="#5dffaa"/>
+        </svg>
+        <h4>Color Match</h4>
+        <div class="points">bonus per matched goal</div>
+        <p>Place a stack in a Goal of the same color — reds to reds, blues to blues — and collect the multiplier.</p>
+      </div>
+
+      <div class="score-tile">
+        <svg class="icon" viewBox="0 0 40 40" fill="none" stroke="#4de5ff" stroke-width="2">
+          <path d="M4 30 L20 10 L36 30 Z"/>
+          <circle cx="20" cy="22" r="3" fill="#4de5ff"/>
+        </svg>
+        <h4>Triangle &amp; Floor Goals</h4>
+        <div class="points">3-stack · 4-stack capacity</div>
+        <p>Central goals that hold the biggest towers. The real endgame: own the center.</p>
+      </div>
+
+      <div class="score-tile">
+        <svg class="icon" viewBox="0 0 40 40" fill="none" stroke="#8b5cf6" stroke-width="2">
+          <rect x="6" y="14" width="28" height="12"/>
+          <line x1="6"  y1="26" x2="6"  y2="34"/>
+          <line x1="34" y1="26" x2="34" y2="34"/>
+        </svg>
+        <h4>Standoff Goal</h4>
+        <div class="points">elevated · high value</div>
+        <p>The Standoff sits above the field. Reaching it rewards bold mechanical design — a crown worth chasing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROBOT: 180 MECH -->
+<section class="block" id="bot">
+  <div class="section-label">Section 03</div>
+  <h2 class="section-title">Meet the <em>180 Mech.</em></h2>
+
+  <div class="aliases">
+    <span class="alias-chip primary">180 Mech</span>
+    <span class="alias-chip">Scorpion</span>
+    <span class="alias-chip">PinTex</span>
+  </div>
+
+  <div class="bot">
+
+    <!-- Match footage: the 180 Mech in action -->
+    <div class="bot-video">
+      <div class="hud tl"><span class="live-dot"></span>MATCH FOOTAGE</div>
+      <div class="hud tr">180 MECH · 9863S</div>
+      <video
+        src="media/robot-180mech.mp4"
+        poster="media/robot-180mech-poster.jpg"
+        autoplay muted loop playsinline
+        preload="metadata"
+        aria-label="STC_THR33CROWN3D team 9863S competing with their 180 Mech robot in VEX IQ Mix and Match">
+      </video>
+      <div class="hud bl">MIX &amp; MATCH · 2025–2026</div>
+      <div class="hud br">STC_THR33CROWN3D</div>
+    </div>
+
+    <ul class="bot-specs">
+      <li><span class="spec-label">Designation</span><span class="spec-value">180 Mech <em>// a.k.a. Scorpion, PinTex</em></span></li>
+      <li><span class="spec-label">Core Motion</span><span class="spec-value">Single 180° rotating arm <em>// low-grab → high-release</em></span></li>
+      <li><span class="spec-label">End Effector</span><span class="spec-value">Dual claw, rubber-band grip</span></li>
+      <li><span class="spec-label">Arm Build</span><span class="spec-value">2×12 beam on reinforced pivot</span></li>
+      <li><span class="spec-label">Motors</span><span class="spec-value">6 total <em>// 2 drive · 2 pin arm · 2 beam arm</em></span></li>
+      <li><span class="spec-label">Drive</span><span class="spec-value">2:1 gear ratio</span></li>
+      <li><span class="spec-label">Pin Arm Ratio</span><span class="spec-value">1:4 <em>// speed-balanced</em></span></li>
+      <li><span class="spec-label">Beam Arm Ratio</span><span class="spec-value">1:5 <em>// torque for lift</em></span></li>
+      <li><span class="spec-label">Pneumatics</span><span class="spec-value">5 pistons <em>// claws + release actions</em></span></li>
+      <li><span class="spec-label">Signature Play</span><span class="spec-value">The 110 Stack <em>// placed on the Standoff</em></span></li>
+    </ul>
+  </div>
+
+  <!-- How it works -->
+  <div class="how-works">
+    <div class="beat">
+      <div class="num">01 · THE ARC</div>
+      <h5>One motion, one commitment</h5>
+      <p>A single arm sweeps a full 180° from a low pickup pose to a high scoring pose. No lift column, no telescoping stages — the arm stays compact against the chassis, which keeps the robot balanced and predictable.</p>
+    </div>
+
+    <div class="beat">
+      <div class="num">02 · THE GRAB</div>
+      <h5>Two stacks of two</h5>
+      <p>The claw, tuned with rubber bands for grip, picks up Pin stacks off the floor. The 180 Mech is designed to hold two stacks of two Pins at once — double the payload per cycle, double the score per trip.</p>
+    </div>
+
+    <div class="beat">
+      <div class="num">03 · THE 110 STACK</div>
+      <h5>Onto the Standoff</h5>
+      <p>The finished piece goes onto the elevated Standoff Goal — a single pin at the base, the beam across the top, and two more pins slotted into each side of the beam. Elevated scoring, high point value, won by robots that can actually reach up and place clean.</p>
+    </div>
+  </div>
+
+  <p style="margin-top:3rem; font-family:'Chakra Petch', sans-serif; font-size:1.05rem; line-height:1.8; color: var(--ice-dim); max-width: 800px;">
+    The 180 Mech is simple to build and honest about its tradeoffs — the arm arc means every driving decision commits the whole robot to a direction. That's why we chose it: once you learn it, you stop fighting it. Top teams running this design in Mix &amp; Match have posted scores in the <strong style="color: var(--cyan)">180+ point</strong> range. That's the ceiling we're climbing.
+  </p>
+</section>
+
+<!-- ROSTER -->
+<section class="block" id="roster">
+  <div class="section-label">Section 04</div>
+  <h2 class="section-title">The <em>Crew</em> of 9863S.</h2>
+
+  <p style="font-family:'Chakra Petch',sans-serif; font-size:1.05rem; color:var(--ice-dim); max-width:720px; line-height:1.75;">
+    Five members, multiple hats each. Nobody on this team does just one thing — the build bench, the code editor, the driver station and the engineering notebook all get shared.
+  </p>
+
+  <div class="roster">
+    <div class="member">
+      <div class="avatar">S</div>
+      <div class="roles">
+        <span class="role-chip cyan">Builder</span>
+        <span class="role-chip cyan">Designer</span>
+        <span class="role-chip">½ Coder</span>
+      </div>
+      <h4>Shiven</h4>
+      <p>Lives on both sides of the lab — the build bench and the code editor. When a mechanism needs designing AND programming, this is the crossover player you want.</p>
+    </div>
+
+    <div class="member">
+      <div class="avatar">R</div>
+      <div class="roles">
+        <span class="role-chip cyan">Builder</span>
+        <span class="role-chip cyan">Designer</span>
+      </div>
+      <h4>Reyansh</h4>
+      <p>Owns the mechanical side. Every beam, every bracket, every pivot and gear ratio chosen on purpose. If the robot looks clean, that's because of this work.</p>
+    </div>
+
+    <div class="member">
+      <div class="avatar">A</div>
+      <div class="roles">
+        <span class="role-chip cyan">Builder</span>
+        <span class="role-chip">½ Coder</span>
+        <span class="role-chip violet">Loader Designer</span>
+      </div>
+      <h4>Aayush</h4>
+      <p>Builder with a specialty most teams overlook — the loader. Figures out how to get Pins into the robot fast and consistently. Fills in on code when the build queue is clear.</p>
+    </div>
+
+    <div class="member">
+      <div class="avatar">A</div>
+      <div class="roles">
+        <span class="role-chip">Coder</span>
+        <span class="role-chip cyan">Driver</span>
+      </div>
+      <h4>Arav</h4>
+      <p>Writes the brain, then drives the body. The tightest possible feedback loop — every line of code gets tested by the same hands that wrote it.</p>
+    </div>
+
+    <div class="member">
+      <div class="avatar">A</div>
+      <div class="roles">
+        <span class="role-chip violet">Notebooker</span>
+        <span class="role-chip cyan">Driver</span>
+      </div>
+      <h4>Arav</h4>
+      <p>Documents the journey. Every iteration, every design decision, every match result — captured in the engineering notebook that judges read before they score. Also on the sticks.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  STC_THR33CROWN3D
+  <svg class="crown-inline"><use href="#crown"/></svg>
+  9863S
+  <svg class="crown-inline"><use href="#crown"/></svg>
+  EST. 2025
+  <svg class="crown-inline"><use href="#crown"/></svg>
+  VEX IQ · Mix &amp; Match · 2025–2026
+</footer>
+
+</body>
+</html>
